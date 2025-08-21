@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap");
+@import "tailwindcss";
+
+body {
+  font-family: "Karla";
+}
+
+.marquee-container {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.marquee {
+  white-space: nowrap;
+  display: inline-block;
+  animation: marquee 16s linear infinite;
+}
+@keyframes marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/* Spotify Green (primary) → #1DB954
+
+Blue Accent (yours) → #1E90FF (Dodger Blue)
+
+Black (background) → #191414 // wag na
+
+Dark Gray (UI sections) → #121212
+
+Medium Gray (borders/icons) → #535353
+
+Light Gray (muted text) → #B3B3B3
+
+White (text / highlights) → #FFFFFF */
