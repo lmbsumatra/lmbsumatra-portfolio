@@ -5,6 +5,7 @@ import expressJsLogo from "../assets/logos/expressjs.svg";
 import nextJsLogo from "../assets/logos/nextjs.svg";
 import nodeJsLogo from "../assets/logos/nodejs.svg";
 import reactJsLogo from "../assets/logos/reactjs.svg";
+import mySQLLogo from "../assets/logos/mysql.svg";
 import { ArrowLeftCircle, ArrowRightCircle } from "lucide-react";
 
 import headerImg from "../assets/imgs/me.jpg";
@@ -52,6 +53,10 @@ export default function Landing() {
     {
       name: "ExpressJS",
       icon: expressJsLogo,
+    },
+    {
+      name: "MySQL",
+      icon: mySQLLogo,
     },
   ];
 
