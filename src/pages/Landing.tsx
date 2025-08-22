@@ -171,7 +171,7 @@ export default function Landing() {
             {techStacks.map((tech) => (
               <img
                 key={tech.icon}
-                className="h-10 sm:h-12 md:h-14 lg:h-16 w-auto bg-white p-2 rounded-2xl"
+                className="h-16 sm:h-16 md:h-14 lg:h-16 w-auto bg-white p-2 rounded-2xl"
                 src={tech.icon}
                 alt={tech.name}
               />
@@ -197,9 +197,9 @@ export default function Landing() {
       {/* Row 3: Projects + Reach Out */}
       <div className="h-full w-full flex flex-col md:flex-row gap-4 lg:w-1/3 lg:flex-col">
         <div className="bg-neutral-950 p-5 rounded-4xl w-full md:w-1/2 flex flex-col gap-4 lg:w-full">
-          <div className="text-4xl sm:text-3xl md:text-4xl lg:text-3xl font-extrabold flex flex-col leading-8 text-right">
+          <div className="text-5xl sm:text-5xl md:text-4xl lg:text-3xl font-extrabold flex flex-col leading-8 text-right">
             <span className="text-neutral-800">FEATURED</span>
-            <span className="text-green-400 text-4xl lg:text-5xl sm:text-4xl md:text-[72px]">
+            <span className="text-green-400 text-7xl lg:text-5xl sm:text-7xl md:text-[72px]">
               PROJECTS
             </span>
           </div>
