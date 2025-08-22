@@ -1,6 +1,8 @@
 import githubLogo from "../assets/github.svg";
 import linkedinlogo from "../assets/linkedin.svg";
 
+import resume from "../assets/files/resume.pdf";
+
 import expressJsLogo from "../assets/logos/expressjs.svg";
 import nextJsLogo from "../assets/logos/nextjs.svg";
 import nodeJsLogo from "../assets/logos/nodejs.svg";
@@ -41,6 +43,7 @@ export default function Landing() {
   const roles = ["Junior Software Developer", "Manual Quality Assurance"];
   const [currentProject, setCurrentProject] = useState<IProject>();
   const [showProjectDetails, setShowProjectDetails] = useState<boolean>(false);
+  const [activeStat, setActiveStat] = useState<string | null>(null);
 
   const links = [
     {
@@ -104,6 +107,26 @@ export default function Landing() {
         { name: "NodeJS", icon: nodeJsLogo },
         { name: "ExpressJS", icon: expressJsLogo },
         { name: "MySQL", icon: mySQLLogo },
+      ],
+      projectDuration: { start: "October 2024", end: "April 2025" },
+      collaborators: [
+        { name: "Angielyn Berdos" },
+        { name: "Irah Fernandez" },
+        { name: "Christian Manzano" },
+        { name: "Khaylle Rosario" },
+        { name: "Love Missy Sumatra" },
+      ],
+    },
+    {
+      id: 3,
+      title: "Darkdays at the Labyrinth",
+      subtitle: "A dark maze game desktop application",
+      description: `Darkdays at the Labyrinth is a mystery-adventure game designed to surprise and challenge players at every turn. Set in a shadowy, unpredictable maze, players must explore, survive, and think critically to escape. Each path hides the unknown, it could be a treasure, a riddle, or a deadly enemy. With limited light and limited time, the player must make bold decisions to survive.\n\n* Finals project required for Game Development course`,
+      url: "https://www.youtube.com/watch?v=aM-DyjRx2yI",
+      tempCard: "bg-voilet-500",
+      techStacks: [
+        { name: "C#", icon: "" },
+        { name: "Unity", icon: "" },
       ],
       projectDuration: { start: "October 2024", end: "April 2025" },
       collaborators: [
@@ -178,33 +201,83 @@ export default function Landing() {
     { name: "MySQL", icon: mySQLLogo },
   ];
 
+  const experienceArticles = [
+    {
+      img: "https://placehold.co/400x225/red/ffffff?text=LGTS", 
+      title: "Software Developer Intern",
+      context: `Collaborated with the development team at Lightweight Global Tech Solutions Corp. using NextJS, TailwindCSS, ShadCN, Zustand, TanStack Query, and Python (LangChain + OpenAI). Focused on frontend feature implementation and testing.`,
+      date: "March 2025 – May 2025",
+    },
+    {
+      img: "https://placehold.co/400x225/red/ffffff?text=TUP", 
+      title: "Student Assistant, Admissions Office",
+      context: `Encoded student data, answered inquiries, and supported administrative operations to ensure smooth admissions processing at TUP - Manila.`,
+      date: "February 2025",
+    },
+  ];
+
+  const projectArticles = featuredProjects.map((proj) => ({
+    img: `https://img.youtube.com/vi/${getYouTubeId(proj.url)}/0.jpg`,
+    title: proj.title,
+    context: proj.subtitle,
+    date: `${proj.projectDuration.start} – ${proj.projectDuration.end}`,
+  }));
+
+  const languageArticles = [
+    {
+      img: "https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png",
+      title: "JavaScript",
+      context:
+        "Used primarily in frontend and backend projects for interactive features.",
+      date: "Since 2023",
+    },
+    {
+      img: "https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg",
+      title: "TypeScript",
+      context:
+        "Utilized for type-safe development in scalable frontend projects.",
+      date: "Since 2024",
+    },
+  ];
+
   return (
     <div className="min-h-screen w-full p-4 sm:p-6 md:p-8 flex flex-col gap-6 lg:flex-row lg:justify-between">
       {/* Row 1: Basic Info */}
       <div className="w-full lg:w-1/3">
         <div className="bg-white h-fit w-full p-5 rounded-4xl">
-          <div className="text-neutral-900 flex flex-col items-center text-center gap-4">
+          <div className="text-neutral-900 flex flex-col items-center text-center gap-2">
             <div className="bg-green-700 w-full max-h-96 rounded-3xl overflow-hidden">
               <img src={headerImg} className="w-full h-auto object-cover" />
             </div>
             <h1 className="text-5xl sm:text-5xl md:text-4xl lg:text-[40px] font-extrabold leading-tight">
               Love Missy B. Sumatra
             </h1>
-            <div className="flex flex-wrap justify-center gap-2">
+            <div className="flex flex-wrap justify-center">
               {roles.map((role, idx) => (
-                <h2
-                  key={idx}
-                  className="text-lg sm:text-xl md:text-2xl text-neutral-800 font-bold"
-                >
+                <h2 key={idx} className="text-md text-neutral-800 font-bold">
                   {role}
                 </h2>
               ))}
             </div>
+            <div className="mt-4">
+              <a
+                className="py-3 px-5 hover:bg-green-700 transition-color duration-300 rounded font-extrabold bg-green-500 text-white"
+                href={resume}
+                target="_blank"
+              >
+                Resume
+              </a>
+            </div>
           </div>
-          <div className="mt-4 italic inline-block text-left leading-4">
+
+          <div className="mt-4 italic text-left leading-4">
             <p>Portfolio Version 1</p>
 
-            <a href="https://lmbsumatraportfolio.vercel.app/" className="underline" target="_blank">
+            <a
+              href="https://lmbsumatraportfolio.vercel.app/"
+              className="underline"
+              target="_blank"
+            >
               https://lmbsumatraportfolio.vercel.app/
             </a>
           </div>
@@ -226,7 +299,8 @@ export default function Landing() {
             {currentStats.map((stat, idx) => (
               <div
                 key={idx}
-                className="bg-neutral-900/25 p-3 rounded-2xl w-full lg:w-28 text-right sm:w-full"
+                onClick={() => setActiveStat(stat.context)}
+                className="bg-neutral-900/25 p-3 rounded-2xl w-full lg:w-28 text-right sm:w-full cursor-pointer hover:bg-neutral-900/50 transition-colors duration-300"
               >
                 <h1 className="text-5xl sm:text-2xl md:text-[64px] lg:text-4xl font-extrabold text-white leading-tight">
                   {stat.number} +
@@ -299,7 +373,7 @@ export default function Landing() {
                     <iframe
                       src={`https://www.youtube.com/embed/${getYouTubeId(
                         currentProject.url
-                      )}?&mute=1&controls=0&loop=1&playlist=${getYouTubeId(
+                      )}?&controls=0&loop=1&playlist=${getYouTubeId(
                         currentProject.url
                       )}`}
                       title={currentProject.title}
@@ -441,7 +515,7 @@ export default function Landing() {
             {/* Project Dates */}
             <div className="mb-4">
               <h2 className="font-bold text-neutral-700 mb-2">
-                Project Timeline
+                Project Duration
               </h2>
               <p className="text-neutral-800">
                 <strong>Start:</strong> {currentProject.projectDuration.start}
@@ -462,6 +536,52 @@ export default function Landing() {
                 View on GitHub →
               </a>
             </div> */}
+          </div>
+        </div>
+      )}
+
+      {activeStat && (
+        <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4 sm:p-8">
+          <div className="bg-white w-full max-w-3xl rounded-2xl overflow-auto max-h-[90vh] p-6 relative">
+            <button
+              onClick={() => setActiveStat(null)}
+              className="absolute top-4 right-4 text-neutral-600 hover:text-black text-xl font-bold"
+            >
+              ✕
+            </button>
+
+            <h1 className="text-3xl font-bold text-green-600 mb-6">
+              {activeStat}
+            </h1>
+
+            <div className="space-y-4">
+              {(activeStat === "Year(s) of Experience"
+                ? experienceArticles
+                : activeStat === "Completed Projects"
+                ? projectArticles
+                : languageArticles
+              ).map((item, index) => (
+                <div
+                  key={index}
+                  className="flex items-start gap-4  rounded-xl p-4 shadow"
+                >
+                  <img
+                    src={item.img}
+                    alt={item.title}
+                    className="w-24 h-24 object-cover rounded-lg"
+                  />
+                  <div className="flex flex-col">
+                    <h2 className="text-lg font-bold text-green-700">
+                      {item.title}
+                    </h2>
+                    <p className="text-sm text-neutral-700">{item.context}</p>
+                    <span className="text-xs text-neutral-500 mt-1">
+                      {item.date}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       )}
