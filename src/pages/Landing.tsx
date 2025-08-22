@@ -216,7 +216,7 @@ export default function Landing() {
                 <div
                   className={`${currentProject.tempCard} relative h-64 sm:h-72 w-full sm:w-64 rounded-3xl p-5 overflow-hidden transition-colors hover:bg-gradient-to-t hover:from-neutral-900/90 hover:to-green-900/50 group`}
                 >
-                  <div className="absolute inset-0 flex flex-col justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-5">
+                  <div className="absolute inset-0 flex flex-col justify-center text-white opacity-100 lg:opacity-0 sm:opacity-100 group-hover:opacity-100 transition-opacity duration-300 p-5">
                     <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold leading-tight">
                       {currentProject.title}
                     </h1>
