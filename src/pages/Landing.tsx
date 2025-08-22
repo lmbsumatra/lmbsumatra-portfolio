@@ -201,6 +201,13 @@ export default function Landing() {
               ))}
             </div>
           </div>
+          <div className="mt-4 italic inline-block text-left leading-4">
+            <p>Portfolio Version 1</p>
+
+            <a href="https://lmbsumatraportfolio.vercel.app/" className="underline" target="_blank">
+              https://lmbsumatraportfolio.vercel.app/
+            </a>
+          </div>
         </div>
       </div>
 
