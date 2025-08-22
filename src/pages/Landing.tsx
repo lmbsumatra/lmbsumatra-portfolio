@@ -199,7 +199,7 @@ export default function Landing() {
         <div className="bg-neutral-950 p-5 rounded-4xl w-full md:w-1/2 flex flex-col gap-4 lg:w-full">
           <div className="text-5xl sm:text-5xl md:text-4xl lg:text-3xl font-extrabold flex flex-col leading-8 text-right">
             <span className="text-neutral-800">FEATURED</span>
-            <span className="text-green-400 text-7xl lg:text-5xl sm:text-7xl md:text-[72px]">
+            <span className="text-green-400 text-6xl lg:text-5xl sm:text-6xl md:text-[72px]">
               PROJECTS
             </span>
           </div>
