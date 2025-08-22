@@ -11,12 +11,30 @@ import { ArrowLeftCircle, ArrowRightCircle } from "lucide-react";
 import headerImg from "../assets/imgs/me.jpg";
 import { useEffect, useState } from "react";
 
+interface ICollaborators {
+  name: string;
+}
+
+interface IProjectDuration {
+  start: string;
+  end: string;
+}
+
+interface ITechStack {
+  name: string;
+  icon: string;
+}
+
 interface IProject {
   id: number;
   title: string;
   subtitle: string;
+  description: string;
   url: string;
   tempCard: string;
+  techStacks: ITechStack[];
+  projectDuration: IProjectDuration;
+  collaborators: ICollaborators[];
 }
 
 export default function Landing() {
@@ -33,35 +51,68 @@ export default function Landing() {
     { name: "GitHub", icon: githubLogo, url: "https://github.com/lmbsumatra" },
   ];
 
-  const techStacks = [
-    { name: "NextJS", icon: nextJsLogo },
-    { name: "ReactJS", icon: reactJsLogo },
-    { name: "NodeJS", icon: nodeJsLogo },
-    { name: "ExpressJS", icon: expressJsLogo },
-    { name: "MySQL", icon: mySQLLogo },
-  ];
-
   const featuredProjects = [
     {
       id: 0,
       title: "FarmCo",
       subtitle: "Ecommerce website for farmgoods",
-      url: "youtube.com",
+      description:
+        "FarmCo is created to have a centralized buy and sell platform for farm goods where users can browse different items, filter items to see best options available, add them to cart, and purchase eventually purchase them. User has an option to pick between cash on delivery and online payment with Stripe payment API. \n\nOn the other hand, admin has an option to view the overview of user, items, and overall key metrics of FarmCo. Admin may delete users' account upon request; Add, update, delete, and view items anytime; allowing them to track and maintain the buy and sell platform efficiently.\n\n After the transaction, users who are buyers may create a testimonials which will be posted on the website's landing page. \n\nThe idea of this project is for farmers; for them to be able to distribute fairly farm goods in the market; for resources not to be wasted; and help them to return their investments not only with money, but also the blood and sweat they gave to produce high quality products. \n\n* Finals project required for Website Development course",
+      url: "https://www.youtube.com/watch?v=N1pF5WdQVaQ",
       tempCard: "bg-green-500",
+      techStacks: [
+        { name: "ReactJS", icon: reactJsLogo },
+        { name: "NodeJS", icon: nodeJsLogo },
+        { name: "ExpressJS", icon: expressJsLogo },
+        { name: "MySQL", icon: mySQLLogo },
+      ],
+      projectDuration: { start: "December 2023", end: "January 2024" },
+      collaborators: [{ name: "Love Missy Sumatra" }],
     },
     {
       id: 1,
       title: "Studeo Space",
       subtitle: "Booking and monitoring web app",
-      url: "youtube.com",
+      description:
+        "Studeo Spaces, A client-based web application for booking and monitoring of study spaces Studeo Spaces, A client-based web application for booking and monitoring of study spaces A web-based booking and monitoring system developed for Studeo Spaces to replace manual processes, allowing users to book desks or rooms, receive email confirmations, and send inquiries, while allowing admins to track availability in real-time. \n\n* Finals project required for System Integration and Architecture course",
+      url: "https://www.youtube.com/watch?v=3FxdwJ-ymH4",
       tempCard: "bg-yellow-500",
+      techStacks: [
+        { name: "ReactJS", icon: reactJsLogo },
+        { name: "NodeJS", icon: nodeJsLogo },
+        { name: "ExpressJS", icon: expressJsLogo },
+        { name: "MySQL", icon: mySQLLogo },
+      ],
+      projectDuration: { start: "October 2024", end: "January 2025" },
+      collaborators: [
+        { name: "Angielyn Berdos" },
+        { name: "Irah Fernandez" },
+        { name: "Christian Manzano" },
+        { name: "Khaylle Rosario" },
+        { name: "Love Missy Sumatra" },
+      ],
     },
     {
       id: 2,
       title: "RenTUPeers",
       subtitle: "Peer-to-peer rental platform",
-      url: "youtube.com",
+      description: `RenTUPeers is a peer-to-peer web platform built for TUP-Manila students, enabling campus-based rentals, buy-and-sell, and “looking for” posts — complete with online payments, transaction tracking, and real-time communication, all developed using modern web technologies. Tested for functionality and reliability, the system received high acceptance, showing it effectively addresses students’ rental and resource-sharing needs. \n\n * A Capstone Project`,
+      url: "https://www.youtube.com/watch?v=RAK5phUUN-k",
       tempCard: "bg-cyan-500",
+      techStacks: [
+        { name: "ReactJS", icon: reactJsLogo },
+        { name: "NodeJS", icon: nodeJsLogo },
+        { name: "ExpressJS", icon: expressJsLogo },
+        { name: "MySQL", icon: mySQLLogo },
+      ],
+      projectDuration: { start: "October 2024", end: "April 2025" },
+      collaborators: [
+        { name: "Angielyn Berdos" },
+        { name: "Irah Fernandez" },
+        { name: "Christian Manzano" },
+        { name: "Khaylle Rosario" },
+        { name: "Love Missy Sumatra" },
+      ],
     },
   ];
 
@@ -85,6 +136,17 @@ export default function Landing() {
     );
   };
 
+  function getYouTubeId(url: string): string {
+    try {
+      const match = url.match(
+        /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([^\s&]+)/
+      );
+      return match ? match[1] : "";
+    } catch {
+      return "";
+    }
+  }
+
   const otherTools = [
     "TailwindCSS",
     "Bootstrap",
@@ -106,6 +168,14 @@ export default function Landing() {
     { number: 1, context: "Year(s) of Experience" },
     { number: 4, context: "Completed Projects" },
     { number: 2, context: "Programming Languages" },
+  ];
+
+  const techStacks = [
+    { name: "NextJS", icon: nextJsLogo },
+    { name: "ReactJS", icon: reactJsLogo },
+    { name: "NodeJS", icon: nodeJsLogo },
+    { name: "ExpressJS", icon: expressJsLogo },
+    { name: "MySQL", icon: mySQLLogo },
   ];
 
   return (
@@ -168,14 +238,15 @@ export default function Landing() {
             <span className="text-green-400">STACK</span>
           </div>
           <div className="flex flex-wrap justify-between gap-1">
-            {techStacks.map((tech) => (
-              <img
-                key={tech.icon}
-                className="h-16 sm:h-16 md:h-14 lg:h-16 w-auto bg-white p-2 rounded-2xl"
-                src={tech.icon}
-                alt={tech.name}
-              />
-            ))}
+            {techStacks &&
+              techStacks.map((tech) => (
+                <img
+                  key={tech.icon}
+                  className="h-16 sm:h-16 md:h-14 lg:h-16 w-auto bg-white p-2 rounded-2xl"
+                  src={tech.icon}
+                  alt={tech.name}
+                />
+              ))}
           </div>
           <div className="relative overflow-hidden mt-4">
             <div className="marquee-container w-full">
@@ -214,9 +285,28 @@ export default function Landing() {
                 </button>
 
                 <div
-                  className={`${currentProject.tempCard} relative h-64 sm:h-72 w-full sm:w-64 rounded-3xl p-5 overflow-hidden transition-colors hover:bg-gradient-to-t hover:from-neutral-900/90 hover:to-green-900/50 group`}
+                  className={`${currentProject.tempCard} relative h-64 sm:h-72 w-full sm:w-64 rounded-3xl p-5 overflow-hidden transition-colors bg-green-900 group hover:bg-gradient-to-t hover:from-neutral-900/90 hover:to-green-900/50`}
                 >
-                  <div className="absolute inset-0 flex flex-col justify-center text-white opacity-100 lg:opacity-0 sm:opacity-100 group-hover:opacity-100 transition-opacity duration-300 p-5">
+                  {/* Background iframe */}
+                  <div className="absolute inset-0 z-0 pointer-events-none">
+                    <iframe
+                      src={`https://www.youtube.com/embed/${getYouTubeId(
+                        currentProject.url
+                      )}?&mute=1&controls=0&loop=1&playlist=${getYouTubeId(
+                        currentProject.url
+                      )}`}
+                      title={currentProject.title}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="w-full h-full object-cover "
+                    ></iframe>
+                  </div>
+
+                  <div className="relative z-10 aspect-w-16 aspect-h-9 h-100 w-full rounded-lg overflow-hidden mb-6"></div>
+
+                  <div
+                    className={`absolute inset-0 flex flex-col justify-center text-white opacity-100 lg:opacity-0 sm:opacity-100 group-hover:opacity-100 transition-opacity duration-300 p-5 z-20 ${currentProject.tempCard} group hover:bg-gradient-to-t hover:from-neutral-900/90 hover:to-green-900/50`}
+                  >
                     <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold leading-tight">
                       {currentProject.title}
                     </h1>
@@ -224,7 +314,7 @@ export default function Landing() {
                       {currentProject.subtitle}
                     </h2>
                     <button
-                      className="text-left underline"
+                      className="text-left underline cursor-pointer"
                       onClick={() => setShowProjectDetails(true)}
                     >
                       Read Details
@@ -272,11 +362,100 @@ export default function Landing() {
         </div>
       </div>
 
-      {/* Overlay */}
-      {showProjectDetails && (
-        <div className="fixed inset-0 bg-neutral-900/75 z-50 flex items-center justify-center">
-          <div className="text-white text-2xl">hi – this is your overlay</div>
-          <button onClick={() => setShowProjectDetails(false)}>Close</button>
+      {showProjectDetails && currentProject && (
+        <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4 sm:p-8">
+          <div className="bg-white w-full max-w-4xl rounded-2xl overflow-auto max-h-[90vh] p-6 relative">
+            <button
+              onClick={() => setShowProjectDetails(false)}
+              className="absolute top-4 right-4 text-neutral-600 hover:text-black text-xl font-bold"
+            >
+              ✕
+            </button>
+
+            {/* Video Embed */}
+            <div className="aspect-w-16 aspect-h-9 h-100 w-full rounded-lg overflow-hidden mb-6">
+              <iframe
+                src={`https://www.youtube.com/embed/${getYouTubeId(
+                  currentProject.url
+                )}`}
+                title={currentProject.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+              ></iframe>
+            </div>
+
+            {/* Title + Subtitle */}
+            <div className="mb-4">
+              <h1 className="text-3xl font-bold text-neutral-900">
+                {currentProject.title}
+              </h1>
+              <p className="text-neutral-600 text-lg">
+                {currentProject.subtitle}
+              </p>
+            </div>
+
+            {/* Description */}
+            <p className="mb-4 text-neutral-800 whitespace-pre-line">
+              {currentProject.description}
+            </p>
+
+            {/* Tech + Tools */}
+            <div className="mb-4">
+              <h2 className="font-bold text-neutral-700 mb-2">
+                Tech Stack & Tools
+              </h2>
+              <div className="flex flex-wrap gap-2">
+                {currentProject.techStacks.map((tech) => (
+                  <div
+                    key={tech.name}
+                    className="flex items-center gap-2 bg-neutral-100 px-3 py-1 rounded-xl"
+                  >
+                    <img src={tech.icon} alt={tech.name} className="w-5 h-5" />
+                    <span className="text-sm text-neutral-800">
+                      {tech.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Contributors */}
+            <div className="mb-4">
+              <h2 className="font-bold text-neutral-700 mb-2">Contributors</h2>
+              <ul className="list-disc list-inside text-neutral-800">
+                {currentProject &&
+                  currentProject.collaborators.map((col) => (
+                    <li>{col.name}</li>
+                  ))}
+              </ul>
+            </div>
+
+            {/* Project Dates */}
+            <div className="mb-4">
+              <h2 className="font-bold text-neutral-700 mb-2">
+                Project Timeline
+              </h2>
+              <p className="text-neutral-800">
+                <strong>Start:</strong> {currentProject.projectDuration.start}
+                <br />
+                <strong>End:</strong> {currentProject.projectDuration.end}
+              </p>
+            </div>
+
+            {/* <div className="mb-2">
+              <h2 className="font-bold text-neutral-700 mb-2">
+                Project Repository
+              </h2>
+              <a
+                href="https://github.com/lmbsumatra/sample-project"
+                target="_blank"
+                className="text-green-600 underline hover:text-green-800"
+              >
+                View on GitHub →
+              </a>
+            </div> */}
+          </div>
         </div>
       )}
     </div>
