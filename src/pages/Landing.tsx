@@ -123,7 +123,7 @@ export default function Landing() {
       subtitle: "A dark maze game desktop application",
       description: `Darkdays at the Labyrinth is a mystery-adventure game designed to surprise and challenge players at every turn. Set in a shadowy, unpredictable maze, players must explore, survive, and think critically to escape. Each path hides the unknown, it could be a treasure, a riddle, or a deadly enemy. With limited light and limited time, the player must make bold decisions to survive.\n\n* Finals project required for Game Development course`,
       url: "https://www.youtube.com/watch?v=aM-DyjRx2yI",
-      tempCard: "bg-voilet-500",
+      tempCard: "bg-violet-500",
       techStacks: [
         { name: "C#", icon: "" },
         { name: "Unity", icon: "" },
