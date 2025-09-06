@@ -1,7 +1,7 @@
 import githubLogo from "../assets/github.svg";
 import linkedinlogo from "../assets/linkedin.svg";
 
-import resume from "../assets/files/resume.pdf";
+import resume from "../assets/files/sumatra-resume.pdf";
 
 import expressJsLogo from "../assets/logos/expressjs.svg";
 import nextJsLogo from "../assets/logos/nextjs.svg";
